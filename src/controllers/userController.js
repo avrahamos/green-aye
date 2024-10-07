@@ -1,6 +1,14 @@
+const { createUser } = require("../services/userService");
+
 const register = async (req, res) => {
   try {
-  } catch (eror) {}
+    await createUser(req.body);
+    res.status(201).json({
+      msg: "user created",
+    });
+  } catch (eror) {
+    res.status(400).json(err);
+  }
 };
 
 const getProfile = async (req, res) => {
