@@ -14,7 +14,7 @@ const login = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    res.clearCooki("token");
+    res.clearCookie("token");
     res.sendStatus(200);
   } catch (eror) {
     res.sendStatus(500).json({ msg: eror });
