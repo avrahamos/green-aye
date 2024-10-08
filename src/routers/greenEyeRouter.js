@@ -6,11 +6,15 @@ const {
   reply,
   deletePoll,
 } = require("../controllers/greenEyeController");
+const {
+  onlySoldiersAndCommanders,
+  onlyCommanders,
+} = require("../middlewares/authMiddlewares");
 
-router.post("/", createPoll);
-router.get("/my", getNotification);
-router.get("/:id", getPollById);
-router.post("/reply", reply);
-router.delete("/:id", deletePoll);
+router.post("/", onlyCommanders, createPoll);
+router.get("/my", onlySoldiersAndCommanders, getNotification);
+router.get("/:id", onlySoldiersAndCommanders, getPollById);
+router.post("/reply", onlySoldiersAndCommanders, reply);
+router.delete("/:id", onlyCommanders, deletePoll);
 
 module.exports = router;

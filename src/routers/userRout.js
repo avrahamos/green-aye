@@ -4,9 +4,10 @@ const {
   getProfile,
   setSetinngs,
 } = require("../controllers/userController");
+const { onlySoldiersAndCommanders } = require("../middlewares/authMiddlewares");
 
 router.post("/register", register);
-router.get("/profile", getProfile);
-router.patch("/settings", setSetinngs);
+router.get("/profile", onlySoldiersAndCommanders, getProfile);
+router.patch("/settings", onlySoldiersAndCommanders, setSetinngs);
 
 module.exports = router;

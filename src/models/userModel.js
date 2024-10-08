@@ -3,28 +3,28 @@ const mongoose = require("mongoose");
 const userScema = new mongoose.Schema({
   user_name: {
     type: String,
-    required: [true, "required name"],
-    minlangth: [5, "5"],
+    required: [true, "user name is required"],
+    minlength: [5, "way too short name, please enter at least 5 chars"],
   },
   password: {
     type: String,
-    required: [true, "required password"],
+    required: [true, " password must be provided"],
   },
   role: {
     type: String,
-    enoum: ["soldier", "commandar"],
-    required: [true, "required role"],
+    enum: ["soldier", "commander"],
+    required: [true, "please provide a role"],
   },
   area: {
     type: String,
-    required: [true, "required area"],
-    enum: ["north", "west", "center", "suoth", "east"],
+    enum: ["center", "north", "south", "west", "east"],
+    required: [true, "please provide an area"],
   },
   units: {
     type: [Number],
-    required: [true, "required unit"],
+    required: [false, "please specify at least one unit"],
   },
 });
 
-const UserModel = mongoose.model("user", userScema);
+const UserModel = mongoose.model("users", userScema);
 module.exports = { UserModel, userScema };
